@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/sistema-financeiro/static/css/main.073c9b0a.css",
-    "main.js": "/sistema-financeiro/static/js/main.03910c36.js",
-    "static/js/787.8b3c8ab6.chunk.js": "/sistema-financeiro/static/js/787.8b3c8ab6.chunk.js",
-    "static/media/logo.svg": "/sistema-financeiro/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
-    "index.html": "/sistema-financeiro/index.html",
-    "main.073c9b0a.css.map": "/sistema-financeiro/static/css/main.073c9b0a.css.map",
-    "main.03910c36.js.map": "/sistema-financeiro/static/js/main.03910c36.js.map",
-    "787.8b3c8ab6.chunk.js.map": "/sistema-financeiro/static/js/787.8b3c8ab6.chunk.js.map"
+    "main.css": "/moneyManagement/static/css/main.073c9b0a.css",
+    "main.js": "/moneyManagement/static/js/main.cd260e99.js",
+    "static/js/787.8b3c8ab6.chunk.js": "/moneyManagement/static/js/787.8b3c8ab6.chunk.js",
+    "static/media/logo.svg": "/moneyManagement/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/moneyManagement/index.html",
+    "main.073c9b0a.css.map": "/moneyManagement/static/css/main.073c9b0a.css.map",
+    "main.cd260e99.js.map": "/moneyManagement/static/js/main.cd260e99.js.map",
+    "787.8b3c8ab6.chunk.js.map": "/moneyManagement/static/js/787.8b3c8ab6.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.03910c36.js"
+    "static/js/main.cd260e99.js"
   ]
 }
