@@ -1,35 +1,13 @@
-import React from 'react';
-import { LoginScreen } from './screens/login';
-import { ThemeProvider } from 'styled-components';
-import { theme } from './globalStyles/colors';
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-import { HomeScreen } from './screens/homePage';
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <LoginScreen />,
-  },
-  {
-    path: "/home",
-    element: <HomeScreen />,
-  },
-  {
-    path: "/",
-    errorElement: <HomeScreen />,
-    element: <HomeScreen />,
-  },
-]);
-
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { GlobalContextProvider } from './contexts/globalContextProvider';
+import { routes } from './routes/routes';
 
 function App() {
+
   return (
-    <ThemeProvider theme={theme}>
-      <RouterProvider router={router} />
-    </ThemeProvider>
+    <GlobalContextProvider>
+      <RouterProvider router={createBrowserRouter(routes)} />
+    </GlobalContextProvider>
   );
 }
 

@@ -4,8 +4,9 @@ import { TitleCard } from "../../components/texts/titleCard";
 import * as Style from "./styles";
 import { useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
-import { userAuthentication } from "../../data/apiSimulations/login/loginData";
-import { useState } from "react";
+import { useContext, useEffect } from "react";
+import AuthContext from "../../contexts/authContext";
+import LoadingContext from "../../contexts/loadingContext";
 
 type FormData = {
   username: string;
@@ -13,23 +14,15 @@ type FormData = {
 };
 export const LoginScreen = () => {
   const { register, handleSubmit } = useForm<FormData>();
+  const { handleSignIn, userData } = useContext(AuthContext);
+  const { loading } = useContext(LoadingContext);
   const navigate = useNavigate();
-  const [loading, setLoading] = useState<boolean>(false);
 
   const onSubmit = handleSubmit(data => {
-    setLoading(true);
-    setTimeout(() => {
-      if (
-        userAuthentication.username === data.username &&
-        userAuthentication.password === data.password
-      ) {
-        navigate('/home');
-      } else {
-        alert('Dados inválidos!');
-      }
-      setLoading(false);
-    }, 2000);
+    handleSignIn(data);
   });
+
+  useEffect(() => { userData && navigate('/home') }, [userData]);
 
   return (
     <Style.Container>
