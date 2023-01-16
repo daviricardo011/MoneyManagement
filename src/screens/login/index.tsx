@@ -22,7 +22,7 @@ export const LoginScreen = () => {
     handleSignIn(data);
   });
 
-  useEffect(() => { userData && navigate('/home') }, [userData]);
+  useEffect(() => { userData && navigate('/home') }, [navigate, userData]);
 
   return (
     <Style.Container>
