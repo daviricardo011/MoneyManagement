@@ -3,11 +3,13 @@ import homeIcon from '../../assets/menuHome.svg';
 import registerIcon from '../../assets/menuRegister.svg';
 import chartIcon from '../../assets/menuChart.svg';
 import settingsIcon from '../../assets/menuSettings.svg';
-export const Sidemenu = () => {
+
+export const MainMenu = ({ children } : { children: JSX.Element } ) => {
 	return (
-			<Style.SideMenuContainer>
+		<Style.MainContainer>
+			<Style.MainMenuContainer>
 				<div className='icons'>
-					<div className='icon'>
+					<div className='icon actualPage'>
 						<img src={homeIcon} alt='' />
 						<div className='highlight actualPage'/>
 					</div>
@@ -25,7 +27,7 @@ export const Sidemenu = () => {
 					</div>
 				</div>
 				<div className='links'>
-					<div className='link'>
+					<div className='link actualPage'>
 						<span>Tela inicial</span>
 						<div className='highlight'/>
 					</div>
@@ -42,6 +44,8 @@ export const Sidemenu = () => {
 						<div className='highlight'/>
 					</div>
 				</div>
-			</Style.SideMenuContainer>
+			</Style.MainMenuContainer>
+			<div className='screenContent'>{children}</div>
+		</Style.MainContainer>
 	);
 }

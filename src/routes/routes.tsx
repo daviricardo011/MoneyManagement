@@ -5,6 +5,7 @@ import { HomeScreen } from '../screens/homePage';
 import { RouteObject } from 'react-router-dom';
 import { NotFound } from '../screens/notFound';
 import { useLocalStorage } from '../hooks/useLocalStorage';
+import { MainMenu } from '../components/sidebar';
 
 
 const CheckAuth = ({ privateRoute, children }: { privateRoute?: boolean; children: JSX.Element }) => {
@@ -14,7 +15,9 @@ const CheckAuth = ({ privateRoute, children }: { privateRoute?: boolean; childre
     return <LoginScreen />
   }
 
-  return children;
+  return <>
+    <MainMenu children={children}/>
+  </>;
 }
 
 export const routes: RouteObject[] = [
