@@ -1,26 +1,17 @@
 import React from 'react';
 import { LoginScreen } from '../screens/login';
+import { RegisterScreen } from '../screens/registerUser';
 import { HomeScreen } from '../screens/homePage';
 import { RouteObject } from 'react-router-dom';
-import { useContext } from 'react';
-import AuthContext from '../contexts/authContext';
 import { NotFound } from '../screens/notFound';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 
 
-const RequireAuth = ({ children }: { children: JSX.Element }) => {
-  const { userData } = useContext(AuthContext);
+const CheckAuth = ({ privateRoute, children }: { privateRoute?: boolean; children: JSX.Element }) => {
+  const [isAuthenticated] = useLocalStorage({ key: 'logged' });
 
-  if (!userData) {
+  if (!isAuthenticated && privateRoute) {
     return <LoginScreen />
-  }
-
-  return children;
-}
-const PublicRoute = ({ children }: { children: JSX.Element }) => {
-  const { userData } = useContext(AuthContext);
-
-  if (userData) {
-    return <HomeScreen />
   }
 
   return children;
@@ -28,15 +19,19 @@ const PublicRoute = ({ children }: { children: JSX.Element }) => {
 
 export const routes: RouteObject[] = [
   {
-    path: "/",
-    element: <PublicRoute><LoginScreen /></PublicRoute>,
+    path: "/login",
+    element: <CheckAuth><LoginScreen /></CheckAuth>,
+  },
+  {
+    path: "/register",
+    element: <CheckAuth><RegisterScreen /></CheckAuth>,
   },
   {
     path: "/",
-    element: <RequireAuth><HomeScreen /></RequireAuth>,
+    element: <CheckAuth privateRoute><HomeScreen /></CheckAuth>,
   },
   {
     path: "*",
-    element: <RequireAuth><NotFound /></RequireAuth>,
+    element: <CheckAuth privateRoute><NotFound /></CheckAuth>,
   },
 ];

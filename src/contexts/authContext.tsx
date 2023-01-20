@@ -1,13 +1,13 @@
-import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useState } from 'react'
+import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useEffect, useState } from 'react'
 import { userAuthenticationApiInputData, userAuthenticationApiReturn } from '../data/apiSimulations/login/loginData';
 import decode from 'jwt-decode';
 import loadingContext from './loadingContext';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 
 type userDataType = {
   username: string;
   name: string;
 } | null
-
 type authProviderReturns = {
   userData: userDataType;
   setUserData: Dispatch<SetStateAction<userDataType>>;
@@ -17,19 +17,18 @@ type authProviderReturns = {
 interface ContextProps {
   children: ReactNode;
 }
-
 const authProviderReturnsDefault: authProviderReturns = {
   userData: null,
   setUserData: () => { },
   handleSignIn: async (a) => true,
   handleSignOut: async () => true,
 };
-
 const AuthContext = createContext<authProviderReturns>(authProviderReturnsDefault);
 
 export const AuthProvider = ({ children }: ContextProps) => {
   const { toggleLoading } = useContext(loadingContext);
   const [userData, setUserData] = useState<userDataType>(null);
+  const [token, setToken] = useLocalStorage({ key: 'logged', defaultValue: null });
 
   const handleSignIn = async (data: { username: string, password: string }): Promise<boolean> => {
     toggleLoading();
@@ -37,7 +36,7 @@ export const AuthProvider = ({ children }: ContextProps) => {
       userAuthenticationApiInputData.username === data.username &&
       userAuthenticationApiInputData.password === data.password
     ) {
-      setUserData(decode(userAuthenticationApiReturn.token));
+      setToken(userAuthenticationApiReturn.token);
       toggleLoading();
       return true;
     }
@@ -51,9 +50,13 @@ export const AuthProvider = ({ children }: ContextProps) => {
   const handleSignOut = async (): Promise<boolean> => {
     toggleLoading();
     setUserData(null);
+    setToken(null);
+    window.location.href = window.location.href;
     toggleLoading();
     return true;
   };
+
+  useEffect(() => setUserData(decode(userAuthenticationApiReturn.token)), [token]);
 
   return (
     <AuthContext.Provider

@@ -21,6 +21,21 @@ export const InputsContainer = styled.div`
   border-radius: 5px;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 
+  .buttons {
+    padding-top: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    > a {
+      padding-top: 1rem;
+      text-align: center;
+      text-decoration: none;
+      color: ${props => `${props.theme.colors.green}`};
+      font-weight: ${props => `${props.theme.fontWeights.bold}`};
+    }
+  }
+
   @media (min-width: 768px) { 
     min-width: 364px;
   }
