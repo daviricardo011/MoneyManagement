@@ -8,3 +8,17 @@ body {
 code {
   font-family: 'Nunito', sans-serif;
 }
+
+::-webkit-scrollbar {
+  width: 6px;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-track {
+  background: #EAEEED;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #babcbd;
+  border-radius: 20px;
+}
