@@ -85,4 +85,8 @@ export const MainMenuContainer = styled.div`
     .icons:hover + .links {
       display: block;
     }
+
+    @media (max-width: 768px) {
+      display: none;
+    }
 `;

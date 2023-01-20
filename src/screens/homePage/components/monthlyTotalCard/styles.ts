@@ -5,10 +5,20 @@ interface messageType {
 }
 
 export const CardContainer = styled.div`
-	width: 412px;
+	width: 50%;
   height: 348px;
   padding: 20px 40px;
+  border-radius: 5px;
   background-color: ${props => props.theme.colors.white};
+
+  @media (max-width: 1024px) {
+    height: fit-content;
+    width: 100%;
+    padding: 20px 15px;
+  }
+  @media (max-width: 424px) {
+    align-items: flex-start;
+  }
 `;
 
 export const Title = styled.h3`
@@ -17,6 +27,10 @@ export const Title = styled.h3`
   font-weight: ${props => props.theme.fontWeights.bold};
   font-size: ${props => props.theme.fontSizes.title};
   color: ${props => props.theme.colors.green};
+
+  @media (max-width: 767px) {
+    font-size: ${props => props.theme.fontSizes.text};
+  }
 `
 
 export const Caption = styled.h4`
@@ -33,8 +47,8 @@ export const TitleDiv = styled.div`
 
 export const Resume = styled.div`
   display: flex;
-  justify-content: space-between;
-
+  justify-content: center;
+  max-width: 100%;
   .earnings,
   .icon,
   .spending {
@@ -46,19 +60,40 @@ export const Resume = styled.div`
     border-radius: 50px;
     width: 46px;
     height: 46px;
-
+    
     img {
       width: 26px;
       height: 26px;
+    }
+    
+    
+    @media (max-width: 767px) {
+      font-size: ${props => props.theme.fontSizes.text};
+      
+      width: 36px;
+      height: 36px;
+      
+      img {
+        width: 26px;
+        height: 26px;
+      }
     }
   }
   .earnings {
     flex-direction: row-reverse;
     text-align: left;
-
+    
     .icon {
       margin-left: 10px;
       background-color: ${props => props.theme.colors.green};
+      @media (max-width: 320px) {
+        margin: 0;
+      }
+    }
+
+    @media (max-width: 424px) {
+      flex-direction: column;
+      text-align: center;
     }
   }
   .spending {
@@ -69,13 +104,39 @@ export const Resume = styled.div`
     .icon {
       margin-right: 10px;
       background-color: ${props => props.theme.colors.red};
+      
+      @media (max-width: 320px) {
+        margin: 10px 0 0 0;
+      }
+    }
+    @media (max-width: 424px) {
+      flex-direction: column;
+      text-align: center;
     }
   }
   .line {
     background-color: ${props => props.theme.colors.greyLine};
     height: 64px;
     width: 1px;
-    margin: 50px 0;
+    margin: 50px 20px;
+
+    @media (max-width: 1024px) {
+      margin: 30px 20px;
+    }
+    @media (max-width: 424px) {
+      margin: 0px 20px;
+    }
+    @media (max-width: 320px) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 424px) {
+    margin: 15px 0;
+  }
+  
+  @media (max-width: 320px) {
+    flex-direction: column;
   }
 `;
 
